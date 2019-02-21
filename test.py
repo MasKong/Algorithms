@@ -1,55 +1,37 @@
-# # class Solution:
-# def maxSubArray(nums):
-#     """
-#     :type nums: List[int]
-#     :type k: int
-#     :rtype: float
-#     """
-#     if len(nums) == 1:
-#         return nums[0]
-#     l = [nums[0]]
-#     if nums[0] == 0:
-#         k = 1
-#     else:
-#         k = 0
-#     # last = 0
-#     for i in range(1,len(nums)):
-#         # if nums[i] <0:
-#
-#         # else:
-#         #     k = 0
-#         if k > 3:
-#             for j in range(i-2,i):
-#
-#             # l.append(maxSubArray([i-3:i+1]))
-#             k = 0
-#             continue
-#         if l[i-1] >0:
-#             # if nums[i-1]>0:
-#             #     k = 0
-#             # if l[i-1]>l[i-2]:
-#             #     k = 0
-#             l.append(nums[i] + l[i-1])
-#             if nums[i] == 0:
-#                 k += 1
-#         else:
-#             l.append(nums[i])
-#             if nums[i] == 0:
-#                 k=1
-#             else:
-#                 k = 0
-#     print(l)
-#     return max(l)
-#             # else:
-#
-#
-# # leg = maxSubArray([0,2,0,0,0,16,0,0,0])
-# leg = maxSubArray([1,2,3,4,5])
-# leg = maxSubArray([15,0,0,0,0,20])
-# leg = maxSubArray([15,0,1,-5,0,0,1,0,20])
-#
-# print(leg)
-#
-#
-#
-#
+# you can write to stdout for debugging purposes, e.g.
+# print("this is a debug message")
+
+def solution(A):
+    # write your code in Python 3.6
+
+    s = A
+    res = sum(s)
+    can = s[1:-1]
+    can.sort()
+    for i in range(len(can)-1):
+        if i > 0 and s[i] == s[i-1]:
+            continue
+        for j in range(i+1,len(can)):
+            if j > i+1 and can[j] == can[j-1]:
+                continue
+            if (res - s[i] - s[j]) % 3 == 0:
+                return True
+
+    return False
+
+
+
+s = solution([1,3,4,2,2,2,1,1,2])
+print(s)
+
+print(solution([1,1,1,1,1,1]))
+
+print(solution([1,1,1,1,1]))
+
+print(solution([1,1,1,1,1,1]))
+
+print(solution([1,2]*10000))
+
+
+
+
