@@ -5,15 +5,15 @@ class Solution:
         :type k: int
         :rtype: int
         """
-        def heapify(arr, n, i):
+        def heapify(arr, i):
             """
             :type arr: List[int]
-            :type n: int, length of arr
             :i: heaplify subtree rooted at i
             """
             largest = i
             l = 2 * i + 1
             r = 2 * i + 2
+            n = len(arr)
 
             if l < n and arr[i] < arr[l]:
                 largest = l
@@ -23,21 +23,30 @@ class Solution:
 
             if largest != i:
                 arr[largest], arr[i] = arr[i], arr[largest]
-                heapify(arr, n, largest)
+                heapify(arr, largest)
             return arr
 
-        arr = nums
-        n = len(arr)
+        def build_max_heap(arr):
+            for i in range(int(len(arr)/2), -1, -1):
+                heapify(arr, i)
 
-        # Build a maxheap.
-        for i in range(n, -1, -1):
-            heapify(arr, n, i)
-
-            # One by one extract elements
-        for i in range(n - 1, 0, -1):
-            arr[i], arr[0] = arr[0], arr[i]  # swap
-            heapify(arr, i, 0)
-        return arr
+        build_max_heap(nums)
+        for i in range(len(nums) - 1, 0, -1):
+            nums[0], nums[i] = nums[0], nums[i]
+            heapify(nums[:i], 0)
+        # arr = nums
+        # n = len(arr)
+        #
+        # # Build a maxheap.
+        # for i in range(n, -1, -1):
+        #     heapify(arr, n, i)
+        #
+        #     # One by one extract elements
+        # for i in range(n - 1, 0, -1):
+        #     arr[i], arr[0] = arr[0], arr[i]  # swap
+        #     heapify(arr, i, 0)
+        # return nums[::-1]
+        return nums[::-1]
 
 
 
