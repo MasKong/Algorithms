@@ -23,3 +23,5 @@ def print_linked_list(head):
             print(cur.val)
             # print("->")
             cur = cur.next
+
+
