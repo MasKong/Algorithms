@@ -24,4 +24,11 @@ def print_linked_list(head):
             # print("->")
             cur = cur.next
 
+def intToBin32(self, i):
+    return (bin(((1 << 32) - 1) & i)[2:]).zfill(32)
+
+def bin32ToInt(self, s):
+    return int(s[1:], 2) - int(s[0]) * (1 << 31)
+
+
 
